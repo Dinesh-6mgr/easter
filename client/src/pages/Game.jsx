@@ -68,8 +68,21 @@ const Game = () => {
           )}
         </div>
 
+        {/* Meaning of the game */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mt-8 flex gap-3 items-start bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800/50 rounded-2xl px-5 py-4"
+        >
+          <span className="text-2xl shrink-0 mt-0.5">🥚</span>
+          <p className="text-sm text-amber-800 dark:text-amber-300 leading-relaxed">
+            {t('game.meaning')}
+          </p>
+        </motion.div>
+
         {/* Legend */}
-        <div className="mt-10 grid grid-cols-3 gap-4 text-center text-sm">
+        <div className="mt-6 grid grid-cols-3 gap-4 text-center text-sm">
           <div className="p-4 bg-green-100 dark:bg-green-900/30 rounded-xl">
             <span className="text-2xl block mb-1">🥚</span>
             <p className="font-semibold">{t('game.normalEgg')}</p>

@@ -99,6 +99,40 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Easter Journey Experience banner */}
+      <section className="py-8">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-amber-400 via-orange-400 to-pink-500 p-10 text-center text-white shadow-2xl"
+        >
+          <motion.div
+            animate={{ rotate: [0, 8, -8, 0] }}
+            transition={{ duration: 4, repeat: Infinity, repeatType: 'reverse' }}
+            className="text-5xl mb-4"
+          >
+            ✝️
+          </motion.div>
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-3">Easter Journey Experience</h2>
+          <p className="text-white/90 text-lg mb-7 max-w-xl mx-auto">
+            An interactive story from Palm Sunday to Resurrection. Walk the path, feel the story, and discover hope.
+          </p>
+          <Link to="/journey">
+            <motion.button
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.97 }}
+              className="px-9 py-3 bg-white text-orange-500 font-extrabold rounded-full shadow-lg text-base"
+            >
+              Begin the Journey 📖
+            </motion.button>
+          </Link>
+          {/* Decorative blobs */}
+          <div className="absolute -top-8 -left-8 w-32 h-32 rounded-full bg-white/10 pointer-events-none" />
+          <div className="absolute -bottom-8 -right-8 w-40 h-40 rounded-full bg-white/10 pointer-events-none" />
+        </motion.div>
+      </section>
+
       {/* CTA */}
       <section className="py-16">
         <motion.div

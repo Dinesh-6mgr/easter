@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/layout/Navbar';
@@ -8,6 +8,11 @@ import Timeline from './pages/Timeline';
 import Game from './pages/Game';
 import Leaderboard from './pages/Leaderboard';
 import LanguagePicker from './components/common/LanguagePicker';
+import JourneyForm from './pages/journey/JourneyForm';
+import JourneyLetter from './pages/journey/JourneyLetter';
+import JourneyStory from './pages/journey/JourneyStory';
+import JourneyGame from './pages/journey/JourneyGame';
+import JourneyResult from './pages/journey/JourneyResult';
 
 function App() {
   return (
@@ -22,6 +27,11 @@ function App() {
               <Route path="/timeline" element={<Timeline />} />
               <Route path="/game" element={<Game />} />
               <Route path="/leaderboard" element={<Leaderboard />} />
+              <Route path="/journey" element={<Navigate to="/journey/letter" replace />} />
+              <Route path="/journey/letter" element={<JourneyLetter />} />
+              <Route path="/journey/story" element={<JourneyStory />} />
+              <Route path="/journey/game" element={<JourneyGame />} />
+              <Route path="/journey/result" element={<JourneyResult />} />
             </Routes>
           </AnimatePresence>
         </main>

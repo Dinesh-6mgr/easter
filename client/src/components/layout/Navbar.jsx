@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GiEasterEgg } from 'react-icons/gi';
-import { FaGamepad, FaHome, FaHistory, FaTrophy, FaBars, FaTimes } from 'react-icons/fa';
+import { FaGamepad, FaHome, FaHistory, FaTrophy, FaBars, FaTimes, FaBookOpen } from 'react-icons/fa';
 import ThemeToggle from './ThemeToggle';
 import LanguageToggle from './LanguageToggle';
 import { useLanguage } from '../../context/LanguageContext';
@@ -18,6 +18,7 @@ const Navbar = () => {
     { path: '/timeline',    name: t('nav.timeline'),    icon: <FaHistory /> },
     { path: '/game',        name: t('nav.game'),        icon: <FaGamepad /> },
     { path: '/leaderboard', name: t('nav.leaderboard'), icon: <FaTrophy /> },
+    { path: '/journey/letter', name: 'Letter ✝️',           icon: <FaBookOpen /> },
   ];
 
   useEffect(() => {
@@ -47,7 +48,7 @@ const Navbar = () => {
                 key={link.path}
                 to={link.path}
                 className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-colors duration-200 ${
-                  location.pathname === link.path
+                  (link.path === '/' ? location.pathname === '/' : location.pathname.startsWith(link.path))
                     ? 'text-easter-purple dark:text-easter-pink font-semibold'
                     : 'text-gray-600 dark:text-gray-300 hover:text-easter-purple dark:hover:text-easter-pink'
                 }`}
@@ -84,7 +85,7 @@ const Navbar = () => {
                   key={link.path}
                   to={link.path}
                   className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
-                    location.pathname === link.path
+                    (link.path === '/' ? location.pathname === '/' : location.pathname.startsWith(link.path))
                       ? 'bg-easter-purple bg-opacity-10 text-easter-purple dark:text-easter-pink'
                       : 'hover:bg-gray-100 dark:hover:bg-gray-800'
                   }`}

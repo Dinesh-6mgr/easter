@@ -69,6 +69,7 @@ const translations = {
       bomb: 'Bomb: -3',
       readyTitle: 'Ready to Hunt?',
       readyDesc: 'Click Start Game to begin!',
+      meaning: 'Ancient people celebrated spring by decorating and hiding eggs, seeing them as symbols of new life, rebirth, and potential — like a baby bird hatching — and children played by finding these eggs, which later became part of Easter traditions.',
     },
 
     // Game Over
@@ -199,6 +200,7 @@ const translations = {
       bomb: 'बम: -३',
       readyTitle: 'खोजको लागि तयार?',
       readyDesc: 'सुरु गर्न Start Game थिच्नुहोस्!',
+      meaning: 'पुराना समयमा मानिसहरूले वसन्त ऋतु मनाउन अण्डा सजाएर लुकाउँथे, किनभने अण्डा नयाँ जीवन, पुनर्जन्म, र सम्भावनाको प्रतीक थियो — जस्तै बच्चा चरा अण्डाबाट फुट्छ — र बच्चाहरू यी अण्डा खोजेर खेल्थे, जुन पछि ईस्टर परम्पराको भाग बने।',
     },
 
     gameOver: {
