@@ -3,12 +3,12 @@ import confetti from 'canvas-confetti';
 import config from '../config';
 import { useSound } from './useSound';
 
-const REFILL_COUNT = 3;
-const BOUNDS = { minX: 5, maxX: 92, minY: 5, maxY: 88 }; // % bounds inside game area
+const REFILL_COUNT = 5;
+const BOUNDS = { minX: 5, maxX: 92, minY: 5, maxY: 88 };
 
-// Speed range per difficulty level (% per frame at 60fps)
-const BASE_SPEED = 0.12;
-const SPEED_BY_LEVEL = [0.12, 0.18, 0.25, 0.34, 0.44];
+// Faster speeds — noticeably harder at every level
+const BASE_SPEED = 0.18;
+const SPEED_BY_LEVEL = [0.18, 0.27, 0.38, 0.52, 0.68, 0.86];
 
 const randBetween = (a, b) => a + Math.random() * (b - a);
 
@@ -24,6 +24,7 @@ const makeEgg = (level = 1) => {
   return {
     id: Date.now() + Math.random(),
     type,
+    level,
     x: randBetween(BOUNDS.minX, BOUNDS.maxX),
     y: randBetween(BOUNDS.minY, BOUNDS.maxY),
     vx: Math.cos(angle) * speed,
@@ -163,7 +164,7 @@ const useGameLogic = () => {
     playSound('start');
 
     // Seed the board immediately
-    setEggs(makeBatch(REFILL_COUNT, 1));
+    setEggs(makeBatch(REFILL_COUNT + 2, 1));
     startMovementLoop();
     startSpawnLoop(config.DIFFICULTY_LEVELS[0].spawnRate);
   }, [playSound, startMovementLoop, stopMovementLoop, startSpawnLoop]);
@@ -209,13 +210,15 @@ const useGameLogic = () => {
     const cleanup = setInterval(() => {
       const now = Date.now();
       setEggs((prev) => {
-        const next = prev.filter((e) => now - e.createdAt < 6000);
+        // Lifespan shrinks as level rises: 4s → 2.5s
+        const lifespan = Math.max(2500, 4000 - (levelRef.current - 1) * 350);
+        const next = prev.filter((e) => now - e.createdAt < lifespan);
         if (next.length === 0 && isPlayingRef.current) {
           setTimeout(() => spawnBatch(REFILL_COUNT), 80);
         }
         return next;
       });
-    }, 1000);
+    }, 800);
     return () => clearInterval(cleanup);
   }, [isPlaying, spawnBatch]);
 
